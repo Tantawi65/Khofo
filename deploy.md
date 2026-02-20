@@ -7,9 +7,10 @@ This guide covers multiple ways to deploy your Mummy Card Game for use outside l
 ## Table of Contents
 1. [Quick Deploy with Render (Recommended)](#option-1-render-recommended---free)
 2. [Deploy with Railway](#option-2-railway)
-3. [Deploy with Fly.io](#option-3-flyio)
-4. [Deploy with VPS (DigitalOcean/AWS)](#option-4-vps-digitalocean-aws-etc)
-5. [Local Network (LAN Party)](#option-5-local-network-lan-party)
+3. [Deploy with Hugging Face Spaces](#option-3-hugging-face-spaces)
+4. [Deploy with Fly.io](#option-4-flyio)
+5. [Deploy with VPS (DigitalOcean/AWS)](#option-5-vps-digitalocean-aws-etc)
+6. [Local Network (LAN Party)](#option-6-local-network-lan-party)
 
 ---
 
@@ -211,7 +212,134 @@ Railway offers simple deployment with generous free tier.
 
 ---
 
-## Option 3: Fly.io
+## Option 3: Hugging Face Spaces
+
+Hugging Face Spaces offers free hosting with Docker support and WebSockets.
+
+### Step 1: Create Hugging Face Account
+1. Go to [huggingface.co](https://huggingface.co)
+2. Sign up for free
+
+### Step 2: Create a New Space
+1. Click your profile → **"New Space"**
+2. Configure:
+   - **Space name**: `mummy-card-game`
+   - **License**: Choose one (e.g., MIT)
+   - **SDK**: Select **"Docker"**
+   - **Hardware**: CPU basic (free)
+3. Click **"Create Space"**
+
+### Step 3: Create Dockerfile
+
+Create a `Dockerfile` in the `Web` folder:
+
+```dockerfile
+FROM node:18-alpine
+
+# Create app user (required by HF Spaces)
+RUN addgroup -g 1000 appgroup && adduser -u 1000 -G appgroup -D appuser
+
+WORKDIR /app
+
+# Copy package files
+COPY client/package*.json ./client/
+COPY server/package*.json ./server/
+
+# Install dependencies
+RUN cd client && npm install
+RUN cd server && npm install
+
+# Copy source code
+COPY . .
+
+# Build client and server
+RUN cd client && npm run build
+RUN cd server && npm run build
+
+# Change ownership
+RUN chown -R appuser:appgroup /app
+
+# Switch to non-root user
+USER appuser
+
+# Hugging Face Spaces uses port 7860
+ENV PORT=7860
+EXPOSE 7860
+
+# Start server
+CMD ["node", "server/dist/index.js"]
+```
+
+### Step 4: Update Server Port (Optional)
+
+The server already uses `process.env.PORT`, so it will automatically use port 7860 on HF Spaces.
+
+### Step 5: Push to Hugging Face
+
+**Option A: Using Git (Recommended)**
+
+```bash
+# Clone your HF Space
+git clone https://huggingface.co/spaces/YOUR_USERNAME/mummy-card-game
+cd mummy-card-game
+
+# Copy your project files
+# (copy all files from Web folder here)
+
+# Push to HF
+git add .
+git commit -m "Initial deployment"
+git push
+```
+
+**Option B: Upload via Web Interface**
+1. Go to your Space → **Files** tab
+2. Click **"Add file"** → **"Upload files"**
+3. Upload all project files maintaining folder structure:
+   - `Dockerfile`
+   - `client/` folder
+   - `server/` folder
+   - `shared/` folder
+   - `Assests/` folder
+
+### Step 6: Wait for Build
+- Hugging Face will automatically build and deploy
+- Build takes 3-5 minutes
+- Your app will be at: `https://YOUR_USERNAME-mummy-card-game.hf.space`
+
+### Step 7: Check Logs (if issues)
+1. Go to your Space
+2. Click the **"Logs"** button (three dots menu)
+3. Check for any build or runtime errors
+
+### Hugging Face Tips
+
+**Persistent Storage**: Free tier doesn't have persistent storage, meaning game rooms are lost on restart. This is fine for a card game.
+
+**Sleep Mode**: Free Spaces sleep after inactivity. First access after sleep takes ~30 seconds.
+
+**Custom Domain**: You can add a custom domain in Space settings.
+
+### Alternative: README.md Configuration
+
+Instead of uploading files directly, you can create a `README.md` with YAML frontmatter:
+
+```yaml
+---
+title: Mummy Card Game
+emoji: 🎴
+colorFrom: yellow
+colorTo: red
+sdk: docker
+app_port: 7860
+---
+```
+
+Place this at the root of your Space repository.
+
+---
+
+## Option 4: Fly.io
 
 Fly.io provides excellent WebSocket support and global edge deployment.
 
@@ -306,7 +434,7 @@ Your app will be at: `https://mummy-card-game.fly.dev`
 
 ---
 
-## Option 4: VPS (DigitalOcean, AWS, etc.)
+## Option 5: VPS (DigitalOcean, AWS, etc.)
 
 For full control, deploy to a VPS.
 
@@ -381,7 +509,7 @@ sudo certbot --nginx -d yourdomain.com
 
 ---
 
-## Option 5: Local Network (LAN Party)
+## Option 6: Local Network (LAN Party)
 
 Play with friends on the same WiFi network.
 
