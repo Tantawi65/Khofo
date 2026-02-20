@@ -1,6 +1,16 @@
 import { Server, Socket } from 'socket.io';
 import { RoomManager } from '../rooms/RoomManager.js';
+<<<<<<< HEAD
 import type { ServerToClientEvents, ClientToServerEvents, CardId, CardInstance, PendingAction } from '../../../shared/types.js';
+=======
+import type {
+  ServerToClientEvents,
+  ClientToServerEvents,
+  CardId,
+  CardInstance,
+  PendingAction,
+} from '../../../shared/types.js';
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 import { CARD_DATABASE } from '../../../shared/types.js';
 
 type GameSocket = Socket<ClientToServerEvents, ServerToClientEvents>;

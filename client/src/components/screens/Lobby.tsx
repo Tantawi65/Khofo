@@ -46,9 +46,15 @@ export function Lobby() {
 
   return (
     <div 
+<<<<<<< HEAD
       className="flex-1 flex flex-col items-center justify-center p-2 md:p-4 overflow-hidden"
       style={{
         backgroundImage: 'url(/Assests/menu_background.png)',
+=======
+      className="flex-1 flex flex-col items-center justify-center p-4"
+      style={{
+        backgroundImage: 'url(/menu_background.png)',
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -56,6 +62,7 @@ export function Lobby() {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
+<<<<<<< HEAD
         className="bg-black/70 backdrop-blur-sm rounded-2xl p-3 md:p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
@@ -69,11 +76,30 @@ export function Lobby() {
 
         {/* Tabs */}
         <div className="flex border-b border-egyptian-gold/30 mb-3 md:mb-6">
+=======
+        className="bg-black/70 backdrop-blur-sm rounded-2xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <button onClick={handleBack} className="text-egyptian-gold hover:text-yellow-400">
+            ← Back
+          </button>
+          <h1 className="text-2xl font-bold text-egyptian-gold">Lobby</h1>
+          <span className="text-papyrus">{playerName}</span>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex border-b border-egyptian-gold/30 mb-6">
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
           {(['create', 'join', 'browse'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
+<<<<<<< HEAD
               className={`flex-1 py-1 md:py-2 text-center capitalize transition-colors text-sm md:text-base ${
+=======
+              className={`flex-1 py-2 text-center capitalize transition-colors ${
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
                 activeTab === tab
                   ? 'text-egyptian-gold border-b-2 border-egyptian-gold'
                   : 'text-papyrus/60 hover:text-papyrus'
@@ -90,10 +116,17 @@ export function Lobby() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
           >
+<<<<<<< HEAD
             <p className="text-papyrus text-sm md:text-base mb-2 md:mb-4">Create a new room for your friends to join.</p>
             
             <div className="mb-3 md:mb-4">
               <label className="block text-papyrus text-sm mb-1 md:mb-2">Room Name</label>
+=======
+            <p className="text-papyrus mb-4">Create a new room for your friends to join.</p>
+            
+            <div className="mb-4">
+              <label className="block text-papyrus mb-2">Room Name</label>
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
               <input
                 type="text"
                 value={roomName}

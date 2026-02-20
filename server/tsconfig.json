@@ -1,11 +1,19 @@
 {
   "compilerOptions": {
     "target": "ES2020",
+<<<<<<< HEAD
     "module": "ESNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2020"],
     "outDir": "./dist",
     "rootDir": "../",
+=======
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

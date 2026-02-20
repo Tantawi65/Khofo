@@ -1,7 +1,19 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Server, Socket } from 'socket.io';
 import { GameEngine } from '../game/GameEngine.js';
+<<<<<<< HEAD
 import type { Room, RoomInfo, Player, ServerToClientEvents, ClientToServerEvents, CardInstance, GameState } from '../../../shared/types.js';
+=======
+import type {
+  Room,
+  RoomInfo,
+  Player,
+  ServerToClientEvents,
+  ClientToServerEvents,
+  CardInstance,
+  GameState,
+} from '../../../shared/types.js';
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 
 interface GameRoom extends Room {
   game: GameEngine | null;

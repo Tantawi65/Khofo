@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState, useEffect, useCallback } from 'react';
+=======
+import { useState, useEffect } from 'react';
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../../store/gameStore';
 import { Card, CardBack } from '../game/Card';
@@ -6,6 +10,7 @@ import { emitDrawCard, emitPlayCard } from '../../socket/socket';
 import type { CardInstance, Player } from '@shared/types';
 import { CARD_DATABASE } from '@shared/types';
 
+<<<<<<< HEAD
 // Fullscreen helper
 const requestFullscreen = () => {
   const elem = document.documentElement;
@@ -18,6 +23,8 @@ const requestFullscreen = () => {
   }
 };
 
+=======
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 export function GameBoard() {
   const gameState = useGameStore((state) => state.gameState);
   const myHand = useGameStore((state) => state.myHand);
@@ -31,6 +38,7 @@ export function GameBoard() {
   const reactionWindowActive = useGameStore((state) => state.reactionWindowActive);
   
   const [pendingCard, setPendingCard] = useState<CardInstance | null>(null);
+<<<<<<< HEAD
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Track fullscreen state
@@ -45,6 +53,8 @@ export function GameBoard() {
       document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
     };
   }, []);
+=======
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 
   // Clear pendingCard when relevant modals close (not target-select or card-type-select)
   useEffect(() => {
@@ -145,13 +155,20 @@ export function GameBoard() {
 
   return (
     <div 
+<<<<<<< HEAD
       className="game-board flex-1 flex flex-col h-full"
       style={{
         backgroundImage: 'url(/Assests/menu_background.png)',
+=======
+      className="game-board flex-1 flex flex-col"
+      style={{
+        backgroundImage: 'url(/menu_background.png)',
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
+<<<<<<< HEAD
       {/* Fullscreen button - mobile only */}
       {!isFullscreen && (
         <button
@@ -164,6 +181,10 @@ export function GameBoard() {
 
       {/* Top area - Other players */}
       <div className="flex justify-center gap-2 md:gap-4 p-1 md:p-2 flex-shrink-0">
+=======
+      {/* Top area - Other players */}
+      <div className="flex justify-center gap-4 p-2">
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         {otherPlayers.map((player) => (
           <PlayerDisplay 
             key={player.id} 
@@ -174,16 +195,27 @@ export function GameBoard() {
       </div>
 
       {/* Middle area - Deck and discard */}
+<<<<<<< HEAD
       <div className="flex-1 flex items-center justify-center gap-4 md:gap-8 min-h-0">
         {/* Deck */}
         <motion.div
           className="deck-pile scale-75 md:scale-100"
+=======
+      <div className="flex-1 flex items-center justify-center gap-8">
+        {/* Deck */}
+        <motion.div
+          className="deck-pile"
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
           data-count={gameState.deckCount}
           whileHover={isMyTurn ? { scale: 1.05 } : {}}
           onClick={handleDrawCard}
         >
           <CardBack size="large" />
+<<<<<<< HEAD
           <p className="text-center text-papyrus text-xs md:text-base mt-1">Deck</p>
+=======
+          <p className="text-center text-papyrus mt-2">Deck</p>
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         </motion.div>
 
         {/* Turn info */}
@@ -192,6 +224,7 @@ export function GameBoard() {
             key={currentPlayer?.id}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
+<<<<<<< HEAD
             className="bg-black/60 rounded-lg px-3 py-2 md:px-6 md:py-3"
           >
             <p className="text-papyrus text-xs md:text-base mb-1">
@@ -199,6 +232,15 @@ export function GameBoard() {
             </p>
             {turnsRemaining > 1 && (
               <p className="text-egyptian-gold text-xs">
+=======
+            className="bg-black/60 rounded-lg px-6 py-3"
+          >
+            <p className="text-papyrus mb-1">
+              {currentPlayer?.id === playerId ? "Your Turn!" : `${currentPlayer?.name}'s Turn`}
+            </p>
+            {turnsRemaining > 1 && (
+              <p className="text-egyptian-gold text-sm">
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
                 {turnsRemaining} turns remaining
               </p>
             )}
@@ -206,7 +248,11 @@ export function GameBoard() {
         </div>
 
         {/* Discard pile */}
+<<<<<<< HEAD
         <div className="relative scale-75 md:scale-100">
+=======
+        <div className="relative">
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
           {gameState.discardPile.length > 0 ? (
             <Card 
               cardId={gameState.discardPile[gameState.discardPile.length - 1]} 
@@ -214,15 +260,24 @@ export function GameBoard() {
               disabled
             />
           ) : (
+<<<<<<< HEAD
             <div className="w-24 h-36 md:w-32 md:h-48 border-2 border-dashed border-papyrus/30 rounded-lg flex items-center justify-center">
               <p className="text-papyrus/40 text-center text-xs">Discard</p>
             </div>
           )}
           <p className="text-center text-papyrus text-xs md:text-base mt-1">Discard ({gameState.discardPile.length})</p>
+=======
+            <div className="w-32 h-48 border-2 border-dashed border-papyrus/30 rounded-lg flex items-center justify-center">
+              <p className="text-papyrus/40 text-center text-sm">Discard</p>
+            </div>
+          )}
+          <p className="text-center text-papyrus mt-2">Discard ({gameState.discardPile.length})</p>
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         </div>
       </div>
 
       {/* Bottom area - My hand */}
+<<<<<<< HEAD
       <div className="bg-black/50 backdrop-blur-sm p-2 md:p-4 flex-shrink-0">
         {/* My player info */}
         <div className="flex items-center justify-between mb-1 md:mb-2">
@@ -233,6 +288,18 @@ export function GameBoard() {
             <span className="text-papyrus text-xs md:text-base">{myPlayer?.name}</span>
           </div>
           <span className="text-egyptian-gold text-xs md:text-base">{myHand.length} cards</span>
+=======
+      <div className="bg-black/50 backdrop-blur-sm p-4">
+        {/* My player info */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <div className={`player-avatar ${isMyTurn ? 'current-turn' : ''}`}>
+              {myPlayer?.name.charAt(0).toUpperCase()}
+            </div>
+            <span className="text-papyrus">{myPlayer?.name} (You)</span>
+          </div>
+          <span className="text-egyptian-gold">{myHand.length} cards</span>
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         </div>
 
         {/* Hand */}
@@ -265,11 +332,19 @@ export function GameBoard() {
         {/* Draw button for mobile */}
         {isMyTurn && (
           <motion.button
+<<<<<<< HEAD
             className="btn btn-primary w-full mt-1 md:mt-2 py-2 text-sm md:text-base"
             onClick={handleDrawCard}
             whileTap={{ scale: 0.95 }}
           >
             Draw Card
+=======
+            className="btn btn-primary w-full mt-2"
+            onClick={handleDrawCard}
+            whileTap={{ scale: 0.95 }}
+          >
+            Draw Card (End Turn)
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
           </motion.button>
         )}
       </div>
@@ -285,6 +360,7 @@ interface PlayerDisplayProps {
 function PlayerDisplay({ player, isCurrentTurn }: PlayerDisplayProps) {
   return (
     <motion.div
+<<<<<<< HEAD
       className={`bg-black/50 rounded-lg p-1 md:p-2 ${isCurrentTurn ? 'ring-2 ring-green-500' : ''}`}
       animate={isCurrentTurn ? { scale: [1, 1.02, 1] } : {}}
       transition={{ repeat: isCurrentTurn ? Infinity : 0, duration: 1.5 }}
@@ -298,10 +374,26 @@ function PlayerDisplay({ player, isCurrentTurn }: PlayerDisplayProps) {
             {player.name}
           </p>
           {!player.isAlive && <p className="text-mummy-red text-xs">☠️</p>}
+=======
+      className={`bg-black/50 rounded-lg p-2 ${isCurrentTurn ? 'ring-2 ring-green-500' : ''}`}
+      animate={isCurrentTurn ? { scale: [1, 1.02, 1] } : {}}
+      transition={{ repeat: isCurrentTurn ? Infinity : 0, duration: 1.5 }}
+    >
+      <div className="flex items-center gap-2 mb-2">
+        <div className={`player-avatar w-8 h-8 text-sm ${!player.isAlive ? 'eliminated' : ''} ${isCurrentTurn ? 'current-turn' : ''}`}>
+          {player.name.charAt(0).toUpperCase()}
+        </div>
+        <div>
+          <p className={`text-sm ${player.isAlive ? 'text-papyrus' : 'text-papyrus/50 line-through'}`}>
+            {player.name}
+          </p>
+          {!player.isAlive && <p className="text-mummy-red text-xs">☠️ Mummified</p>}
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         </div>
       </div>
       
       {player.isAlive && (
+<<<<<<< HEAD
         <div className="flex gap-0.5 justify-center">
           {Array.from({ length: Math.min(player.cardCount, 6) }).map((_, i) => (
             <div 
@@ -311,6 +403,17 @@ function PlayerDisplay({ player, isCurrentTurn }: PlayerDisplayProps) {
           ))}
           {player.cardCount > 6 && (
             <span className="text-egyptian-gold text-xs">+{player.cardCount - 6}</span>
+=======
+        <div className="flex gap-1 justify-center">
+          {Array.from({ length: Math.min(player.cardCount, 8) }).map((_, i) => (
+            <div 
+              key={i} 
+              className="w-4 h-6 bg-gradient-to-br from-egyptian-gold to-sand rounded shadow-sm"
+            />
+          ))}
+          {player.cardCount > 8 && (
+            <span className="text-egyptian-gold text-xs">+{player.cardCount - 8}</span>
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
           )}
         </div>
       )}

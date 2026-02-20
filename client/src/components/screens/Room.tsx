@@ -36,9 +36,15 @@ export function Room() {
 
   return (
     <div 
+<<<<<<< HEAD
       className="flex-1 flex flex-col items-center justify-center p-2 md:p-4 overflow-hidden"
       style={{
         backgroundImage: 'url(/Assests/menu_background.png)',
+=======
+      className="flex-1 flex flex-col items-center justify-center p-4"
+      style={{
+        backgroundImage: 'url(/menu_background.png)',
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -46,6 +52,7 @@ export function Room() {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
+<<<<<<< HEAD
         className="bg-black/70 backdrop-blur-sm rounded-2xl p-3 md:p-6 max-w-lg w-full"
       >
         {/* Header */}
@@ -55,6 +62,17 @@ export function Room() {
           </button>
           <h1 className="text-base md:text-xl font-bold text-egyptian-gold truncate max-w-[150px] md:max-w-none">{currentRoom.name}</h1>
           <span className="text-papyrus/60 text-sm md:text-base">
+=======
+        className="bg-black/70 backdrop-blur-sm rounded-2xl p-6 max-w-lg w-full"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <button onClick={handleLeave} className="text-egyptian-gold hover:text-yellow-400">
+            ← Leave
+          </button>
+          <h1 className="text-xl font-bold text-egyptian-gold">{currentRoom.name}</h1>
+          <span className="text-papyrus/60">
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
             {currentRoom.players.length}/{currentRoom.maxPlayers}
           </span>
         </div>

@@ -1,5 +1,8 @@
 {
+<<<<<<< HEAD
   "type": "module",
+=======
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
   "name": "mummy-card-game-server",
   "version": "1.0.0",
   "description": "Multiplayer Mummy Card Game Server",

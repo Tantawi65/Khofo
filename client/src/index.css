@@ -17,8 +17,11 @@ html, body {
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+<<<<<<< HEAD
   /* Support safe areas for notch/home indicator */
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+=======
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 body {
@@ -27,6 +30,7 @@ body {
   color: #f5f5dc;
   min-height: 100vh;
   min-height: 100dvh;
+<<<<<<< HEAD
   /* Fullscreen mobile */
   position: fixed;
   top: 0;
@@ -35,15 +39,22 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
+=======
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 #root {
   min-height: 100vh;
   min-height: 100dvh;
+<<<<<<< HEAD
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+=======
+  display: flex;
+  flex-direction: column;
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 /* Landscape lock overlay */
@@ -156,6 +167,7 @@ body {
 .modal-overlay {
   @apply fixed inset-0 bg-black/70 flex items-center justify-center z-50;
   @apply backdrop-blur-sm;
+<<<<<<< HEAD
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
@@ -167,6 +179,18 @@ body {
 
 .modal-title {
   @apply text-base md:text-xl font-bold text-egyptian-gold mb-2 md:mb-4 text-center;
+=======
+}
+
+.modal-content {
+  @apply bg-gradient-to-br from-nile-blue to-gray-900 rounded-xl p-6;
+  @apply border-2 border-egyptian-gold shadow-2xl;
+  @apply max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto;
+}
+
+.modal-title {
+  @apply text-xl font-bold text-egyptian-gold mb-4 text-center;
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 /* Toast/Notification styles */
@@ -194,12 +218,21 @@ body {
 
 /* Player avatar */
 .player-avatar {
+<<<<<<< HEAD
   @apply rounded-full bg-egyptian-gold flex items-center justify-center flex-shrink-0;
   @apply text-nile-blue font-bold;
 }
 
 .player-avatar.current-turn {
   @apply ring-2 md:ring-4 ring-green-500 animate-pulse;
+=======
+  @apply w-12 h-12 rounded-full bg-egyptian-gold flex items-center justify-center;
+  @apply text-nile-blue font-bold text-lg;
+}
+
+.player-avatar.current-turn {
+  @apply ring-4 ring-green-500 animate-pulse;
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 .player-avatar.eliminated {
@@ -219,6 +252,7 @@ body {
 
 /* Game board */
 .game-board {
+<<<<<<< HEAD
   @apply flex-1 flex flex-col justify-between;
   background-size: cover;
   background-position: center;
@@ -235,10 +269,16 @@ body {
   .game-board {
     padding: 16px;
   }
+=======
+  @apply flex-1 flex flex-col justify-between p-4;
+  background-size: cover;
+  background-position: center;
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 /* Hand area */
 .hand-area {
+<<<<<<< HEAD
   @apply flex justify-center items-end gap-0 p-1;
   max-width: 100%;
   flex-wrap: nowrap;
@@ -250,25 +290,43 @@ body {
 
 .hand-area::-webkit-scrollbar {
   display: none;
+=======
+  @apply flex justify-center items-end gap-1 p-2;
+  max-width: 100%;
+  flex-wrap: wrap;
+  overflow: hidden;
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 .hand-area .card {
   @apply flex-shrink-0;
+<<<<<<< HEAD
   width: 50px;
   max-width: 60px;
   margin: 0 -4px;
+=======
+  width: 60px;
+  max-width: 80px;
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
 }
 
 @media (min-width: 768px) {
   .hand-area {
     @apply gap-2 p-4;
+<<<<<<< HEAD
+=======
+    flex-wrap: nowrap;
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
     overflow-x: auto;
   }
   
   .hand-area .card {
     width: 100px;
     max-width: 120px;
+<<<<<<< HEAD
     margin: 0;
+=======
+>>>>>>> 9c508caf08707e2de380b4dcb3437d2548bcd74e
   }
 }
 
